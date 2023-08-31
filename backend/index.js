@@ -2,19 +2,13 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const { connectDatabase } = require("./controllers/connectDatabase");
-const showBlogs = require("./routes/showBlogs");
-const createBlogs = require("./routes/createBlogs");
-const deleteBlogs = require("./routes/deleteBlogs");
+const article = require("./routes/article")
 
 app.use(bodyParser.json());
 
 connectDatabase();
 
-app.use("/blogs", showBlogs);
-
-app.use("/post", createBlogs);
-
-app.use("/delete", deleteBlogs);
+app.use("/article", article);
 
 app.listen(3001, () => {
   console.log("SERVER STARTED");
