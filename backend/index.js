@@ -1,8 +1,11 @@
+const cors = require("cors")
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-const { connectDatabase } = require("./controllers/connectDatabase");
 const article = require("./routes/article")
+const { connectDatabase } = require("./controllers/connectDatabase");
+
+app.use(cors())
 
 app.use(bodyParser.json());
 
