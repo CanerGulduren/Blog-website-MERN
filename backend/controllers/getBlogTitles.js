@@ -1,13 +1,13 @@
 const mongoose = require("mongoose");
 const BlogModel = require("../models/blogs");
 
-const getAllBlogs = async (req, res) => {
+const getBlogTitles = async (req, res) => {
   try {
-    const result = await BlogModel.find({});
+    const result = await BlogModel.find({}, "title, desc");
     res.json(result);
   } catch (err) {
     res.status(500).json(err);
   }
 };
 
-module.exports = { getAllBlogs };
+module.exports = { getBlogTitles };
