@@ -28,7 +28,7 @@ const blogSchema = new mongoose.Schema({
   content: {
     img: [
       {
-        url: {
+        path: {
           type: String,
         },
         alt: {

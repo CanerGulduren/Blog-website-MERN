@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  title: '',
-  desc: '',
-  author: '',
-  tag: '',
+  title: "",
+  desc: "",
+  author: "",
+  tag: "",
   category: "",
   content: {
     img: [],
@@ -14,7 +14,7 @@ const initialState = {
 };
 
 const blogSlice = createSlice({
-  name: 'blog',
+  name: "blog",
   initialState,
   reducers: {
     updateBlogData: (state, action) => {
@@ -26,10 +26,14 @@ const blogSlice = createSlice({
     resetBlogData: (state) => {
       return initialState;
     },
+    addImagePath: (state, action) => {
+      const { index, path } = action.payload;
+      state.content.img[index].path = path;
+    },
   },
 });
 
-export const { updateBlogData, resetBlogData } = blogSlice.actions;
+export const { updateBlogData, resetBlogData, addImagePath } = blogSlice.actions;
 
 export const selectBlogData = (state) => state.blog;
 
