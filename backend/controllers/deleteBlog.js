@@ -10,6 +10,7 @@ const deleteBlog = async (req, res) => {
     }
 
     return res.status(200).send("Blog gönderisi başarıyla silindi");
+    
   } catch (err) {
     return res.status(500).send("Blog gönderisi silinemedi.");
   }

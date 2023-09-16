@@ -13,7 +13,7 @@ const blogSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  mData: {
+  tag: {
     type: String,
     required: true,
   },
@@ -21,13 +21,39 @@ const blogSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  content: {
-    type: String,
-    required: true,
-  },
   category: {
     type: String,
     required: false,
+  },
+  content: {
+    img: [
+      {
+        url: {
+          type: String,
+        },
+        alt: {
+          type: String,
+        },
+      },
+    ],
+    text: [
+      {
+        article: {
+          type: String,
+        },
+        title: {
+          type: String,
+        },
+      },
+    ],
+    list: [
+      {
+        item: [String],
+        title: {
+          type: String,
+        },
+      },
+    ],
   },
 });
 
