@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   title: "",
@@ -6,11 +6,7 @@ const initialState = {
   author: "",
   tag: "",
   category: "",
-  content: {
-    img: [],
-    text: [],
-    list:[]
-  },
+  content: [],
 };
 
 const blogSlice = createSlice({
@@ -26,14 +22,22 @@ const blogSlice = createSlice({
     resetBlogData: (state) => {
       return initialState;
     },
-    addImagePath: (state, action) => {
-      const { index, path } = action.payload;
-      state.content.img[index].path = path;
+    addImgInput: (state, action) => {
+      state.content.push({input: "img", data: {path: "", alt: ""}});
+    },
+    addTextInput: (state, action) => {
+      state.content.push({input: "text", data: {title: "", article: ""}});
     },
   },
 });
 
-export const { updateBlogData, resetBlogData, addImagePath } = blogSlice.actions;
+export const {
+  updateBlogData,
+  resetBlogData,
+  addImgInput,
+  addTextInput,
+  updateContent,
+} = blogSlice.actions;
 
 export const selectBlogData = (state) => state.blog;
 

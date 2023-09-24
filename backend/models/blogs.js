@@ -25,36 +25,17 @@ const blogSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-  content: {
-    img: [
-      {
-        path: {
-          type: String,
-        },
-        alt: {
-          type: String,
-        },
+  content: [
+    {
+      input: String,
+      data: {
+        path: String,
+        alt: String,
+        title: String,
+        article: String,
       },
-    ],
-    text: [
-      {
-        article: {
-          type: String,
-        },
-        title: {
-          type: String,
-        },
-      },
-    ],
-    list: [
-      {
-        item: [String],
-        title: {
-          type: String,
-        },
-      },
-    ],
-  },
+    }
+  ],
 });
 
 const BlogModel = mongoose.model("blogs", blogSchema);

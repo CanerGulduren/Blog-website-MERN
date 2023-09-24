@@ -1,25 +1,11 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { updateBlogData, selectBlogData } from "@/app/features/blogSlice";
+import style from "@/app/style/component/inputs.module.css"
 
-function InputElem({ InputTitle, InputName, InputType = "text" }) {
-  const dispatch = useDispatch();
-  const blogData = useSelector(selectBlogData);
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    dispatch(updateBlogData({ [name]: value }));
-  };
-
+function InputElem({ title, name, type = "text", update, value = "" }) {
   return (
-    <div>
-      <label>{InputTitle}:</label>
-      <input
-        type={InputType}
-        name={InputName}
-        value={blogData[InputName] || ""}
-        onChange={handleInputChange}
-      />
+    <div className= {style.inputContainer}>
+      <label>{title}:</label>
+      <input type={type} name={name} onChange={(e, index) => {update(e, index)}} value={value} />
     </div>
   );
 }

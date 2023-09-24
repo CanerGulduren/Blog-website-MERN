@@ -23,7 +23,7 @@ function PostBlog() {
     }
   };
   return (
-    <button onClick={saveBlogData}>Blog Oluştur</button>
+    <button type='submit' onClick={saveBlogData}>Blog Oluştur</button>
   )
 }
 
