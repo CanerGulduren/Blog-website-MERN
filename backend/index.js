@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const article = require("./routes/article")
 const { connectDatabase } = require("./controllers/connectDatabase");
 
-app.use(cors())
+app.use(cors());
 
 app.use(bodyParser.json());
 

@@ -22,11 +22,8 @@ const blogSlice = createSlice({
     resetBlogData: (state) => {
       return initialState;
     },
-    addImgInput: (state, action) => {
-      state.content.push({input: "img", data: {path: "", alt: ""}});
-    },
-    addTextInput: (state, action) => {
-      state.content.push({input: "text", data: {title: "", article: ""}});
+    addText: (state) => {
+      state.content.push({input: "text", data: { title: "", article: "" }});
     },
   },
 });
@@ -34,9 +31,7 @@ const blogSlice = createSlice({
 export const {
   updateBlogData,
   resetBlogData,
-  addImgInput,
-  addTextInput,
-  updateContent,
+  addText
 } = blogSlice.actions;
 
 export const selectBlogData = (state) => state.blog;

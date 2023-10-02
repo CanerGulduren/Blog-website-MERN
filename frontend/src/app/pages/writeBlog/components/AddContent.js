@@ -1,26 +1,45 @@
-"use client"
-import React from 'react'
-import { useDispatch } from 'react-redux'
-import {
-  addImgInput,
-  addTextInput
-} from "@/app/features/blogSlice";
+"use client";
+import React from "react";
+import capitalizeFirstLetter from "@/app/utils/capitalizeFirstLetter";
+import { useDispatch, useSelector } from "react-redux";
+import { selectBlogData, addText, updateBlogData } from "@/app/features/blogSlice";
 
-function AddContent({contentType}) {
-const dispatch = useDispatch()
+const contentTypes = ["text"];
 
-const handleAddContent = () => {
-  if (contentType === 'Image') {
-    dispatch(addImgInput());
-  } else if (contentType === 'Text') {
-    dispatch(addTextInput());
-  }
-};
-  return (
-    <button type="button" onClick={handleAddContent}>
-        Add {contentType}
-    </button>
-  )
+const content = {
+  text: {
+    addNewElement: addText(),
+  },
 }
 
-export default AddContent
+function AddContent() {
+  const blogData = useSelector(selectBlogData);
+  const dispatch = useDispatch();
+
+  const handleAddContent = (element) => {
+    const newContent = content[element].addNewElement
+    console.log(newContent)
+    dispatch(newContent);
+  }
+
+  return (
+    <div>
+      {contentTypes.map((element, index) => {
+        const capitalizeName = capitalizeFirstLetter(element);
+        return (
+          <button
+            key={`btn-${index}`}
+            type="button"
+            onClick={() => {
+              handleAddContent(element)
+            }}
+          >
+            Add {capitalizeName}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+export default AddContent;
