@@ -6,15 +6,12 @@ const { getAllBlogs } = require("../controllers/getAllBlogs");
 const { deleteBlog } = require("../controllers/deleteBlog");
 const { getBlogTitles } = require("../controllers/getBlogTitles");
 const { uploadImages } = require("../controllers/uploadImages");
-const { getImagePaths } = require("../controllers/getImagePaths");
 
 router.get("/", getAllBlogs);
 
 router.get("/:id", getBlogById);
 
 router.get("/titles", getBlogTitles);
-
-router.get("/getImagePaths", getImagePaths)
 
 router.post("/createBlog", createBlog);
 

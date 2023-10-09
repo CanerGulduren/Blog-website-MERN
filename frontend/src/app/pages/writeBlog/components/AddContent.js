@@ -1,24 +1,32 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import capitalizeFirstLetter from "@/app/utils/capitalizeFirstLetter";
-import { useDispatch, useSelector } from "react-redux";
-import { selectBlogData, addText, updateBlogData } from "@/app/features/blogSlice";
+import { useDispatch } from "react-redux";
+import { addText, addImage } from "@/app/features/blogSlice";
 
-const contentTypes = ["text"];
+const contentTypes = ["text", "image"];
 
 const content = {
   text: {
     addNewElement: addText(),
   },
+  image: {
+    addNewElement: addImage()
+  }
 }
 
 function AddContent() {
-  const blogData = useSelector(selectBlogData);
   const dispatch = useDispatch();
+  const [image_ID, setImage_ID] = useState(0)
 
   const handleAddContent = (element) => {
     const newContent = content[element].addNewElement
-    console.log(newContent)
+    const imageContent = element === "image"
+    if(imageContent){
+      const addNewImage = dispatch(addImage(image_ID))
+      setImage_ID(prevImg_ID => prevImg_ID + 1)
+      return addNewImage
+    }
     dispatch(newContent);
   }
 

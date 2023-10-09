@@ -33,6 +33,7 @@ const blogSchema = new mongoose.Schema({
         alt: String,
         title: String,
         article: String,
+        imgID: Number,
       },
     }
   ],
