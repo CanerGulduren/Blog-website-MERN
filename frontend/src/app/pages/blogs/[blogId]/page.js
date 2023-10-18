@@ -39,7 +39,7 @@ async function Blog({ params }) {
       <p>{blog.author}</p>
       {blog.content.map((element, index) => {
         const Content = inputType[element.input]
-        return <Content data={element.data} />
+        return <Content data={element.data} key={index} />
       })}
     </>
   );

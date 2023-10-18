@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const BlogModel = require("../models/blogs");
 
-const getBlogById = async (req, res) => {
+const getBlogByID = async (req, res) => {
   try {
     const blogId = req.params.id;
     const result = await BlogModel.findById(blogId);
@@ -11,4 +11,4 @@ const getBlogById = async (req, res) => {
   }
 };
 
-module.exports = { getBlogById };
+module.exports = { getBlogByID };
