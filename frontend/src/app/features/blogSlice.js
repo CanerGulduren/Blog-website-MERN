@@ -6,6 +6,7 @@ const initialState = {
   author: "",
   tag: "",
   category: "",
+  coverImg: "",
   content: [],
 };
 

@@ -17,6 +17,10 @@ const blogSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  coverImg: {
+    type: String,
+    required: true,
+  },
   date: {
     type: Date,
     default: Date.now,
