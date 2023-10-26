@@ -3,11 +3,13 @@ import Image from "next/image";
 import React, { useState } from "react";
 import getImageURL from "@/app/utils/getImageUrl";
 
-function ImageContent({ data }) {
+function ImageContent({ data, imageStyle }) {
   const [imageURL, setImageURL] = useState(null);
 
   const handleImageURL = async () => {
+    console.log(data.path)
     const url = await getImageURL(data.path);
+    console.log(url)
     setImageURL(url);
   };
 
@@ -21,9 +23,9 @@ function ImageContent({ data }) {
     <Image
       src={imageURL}
       alt={data.alt}
-      width={500}
-      height={500}
-      style={{ border: "2px solid black", display: "block" }}
+      width={900}
+      height={1200}
+      className={`rounded object-cover object-center ${imageStyle}`}
     />
   );
 }

@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import capitalizeFirstLetter from "@/app/utils/capitalizeFirstLetter";
 import { useDispatch } from "react-redux";
 import { addText, addImage } from "@/app/features/blogSlice";
 
@@ -8,9 +7,11 @@ const contentTypes = ["text", "image"];
 
 const content = {
   text: {
+    title: "Paragraf",
     addNewElement: addText(),
   },
   image: {
+    title: "Resim",
     addNewElement: addImage()
   }
 }
@@ -31,9 +32,8 @@ function AddContent() {
   }
 
   return (
-    <div>
+    <div className={"flex align-center"}>
       {contentTypes.map((element, index) => {
-        const capitalizeName = capitalizeFirstLetter(element);
         return (
           <button
             key={`btn-${index}`}
@@ -41,8 +41,9 @@ function AddContent() {
             onClick={() => {
               handleAddContent(element)
             }}
+            className={"mx-2 border border-slate-950 rounded px-5 py-2 bg-neutral-100"}
           >
-            Add {capitalizeName}
+            + {content[element].title} Ekle
           </button>
         );
       })}

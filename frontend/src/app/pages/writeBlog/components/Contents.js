@@ -1,3 +1,4 @@
+"use cilent";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -5,14 +6,42 @@ import {
   updateBlogData,
   pushImagePaths,
 } from "@/app/features/blogSlice";
-import capitalizeFirstLetter from "@/app/utils/capitalizeFirstLetter";
-import getImagePaths  from "@/app/utils/getImagePaths";
+import getImagePaths from "@/app/utils/getImagePaths";
 import InputElem from "./InputElem";
 
-const Contents = ({ submitStarted, pathsUpdated }) => {
+const Contents = ({ submitStarted, pathsUpdated, style }) => {
   const blogData = useSelector(selectBlogData);
   const dispatch = useDispatch();
   const [imageFiles, setImageFiles] = useState([]);
+
+  const inputElems = {
+    title: {
+      name: "title",
+      inputType: "textArea",
+      title: "Paragraf başlığı",
+    },
+    article: {
+      name: "article",
+      inputType: "textArea",
+      title: "Paragraf Gövdesi",
+    },
+    path: {
+      name: "path",
+      inputType: "file",
+      title: "Resim yükle",
+    },
+    alt: {
+      name: "alt",
+      inputType: "text",
+      title: "Resim açıklaması",
+    },
+    text: {
+      title: "Paragraf"
+    },
+    img: {
+      title: "Resim"
+    }
+  };
 
   const handleContentChange = (element, index) => {
     const { name, value } = element.target;
@@ -33,48 +62,56 @@ const Contents = ({ submitStarted, pathsUpdated }) => {
     const imagePaths = await getImagePaths(imageFiles);
     dispatch(pushImagePaths(imagePaths));
     pathsUpdated(true);
-  }
+  };
 
   useEffect(() => {
-    if(submitStarted){
-      updateImagePaths()
+    if (submitStarted) {
+      updateImagePaths();
     }
   }, [submitStarted]);
 
   return (
-    <div>
+    <div className={" flex flex-col gap-y-12"}>
       {blogData.content.map((element, index) => {
         const type = element.input;
         const data = element.data;
-        const capitalizeName = capitalizeFirstLetter(type);
 
         return (
-          <div key={`content-${index}`}>
-            <h3>{capitalizeName} Content</h3>
-
-            {Object.keys(data).map((dataElem, dataIndex) => {
-              const imageInput = dataElem === "path";
-              const skipImgID = dataElem === "imgID";
-
-              if (skipImgID) {
-                return;
+          <div
+            key={`content-${index}`}
+            className={`bg-neutral-700 px-2 md:px-6 py-10 rounded-lg ${style}`}
+          >
+            <h3
+              className={
+                "text-lg mb-3 bg-neutral-50 inline-block border-b-4 border-neutral-800 rounded px-8 py-3"
               }
+            >
+              {inputElems[type].title} İçeriği
+            </h3>
+            <div className={"rounded-lg bg-gray-100 p-4 flex flex-col gap-y-4 border-2 border-gray-600"}>
+              {Object.keys(data).map((dataElem, dataIndex) => {
+                const imageInput = dataElem === "path";
+                const skipImgID = dataElem === "imgID";
 
-              return (
-                <InputElem
-                  key={`content-data-${dataIndex}`}
-                  name={dataElem}
-                  title={`Change ${dataElem}`}
-                  value={imageInput ? "" : data[dataElem]}
-                  type={imageInput ? "file" : "text"}
-                  update={(e) => {
-                    imageInput
+                if (skipImgID) {
+                  return;
+                }
+
+                return (
+                  <InputElem
+                    key={`content-data-${dataIndex}`}
+                    name={dataElem}
+                    title={inputElems[dataElem].title}
+                    type={inputElems[dataElem].inputType}
+                    update={(e) => {
+                      imageInput
                       ? handleImageChange(e)
                       : handleContentChange(e, index);
-                  }}
-                />
-              );
-            })}
+                    }}
+                    />
+                );
+              })}
+            </div>
           </div>
         );
       })}
