@@ -6,7 +6,7 @@ import {
   updateBlogData,
   pushImagePaths,
 } from "@/app/features/blogSlice";
-import getImagePaths from "@/app/utils/getImagePaths";
+import getImagePaths from "@/app/utils/blog/get/getImagePaths";
 import InputElem from "./InputElem";
 
 const Contents = ({ submitStarted, pathsUpdated, style }) => {

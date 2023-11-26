@@ -3,7 +3,7 @@ import React from "react";
 import InputElem from "./InputElem";
 import { useDispatch, useSelector } from "react-redux";
 import { selectBlogData, updateBlogData } from "@/app/features/blogSlice";
-import getImagePaths from "@/app/utils/getImagePaths";
+import getImagePaths from "@/app/utils/blog/get/getImagePaths";
 
 const inputElems = [
   { name: "title", inputType: "textArea", title: "Blog başlığı" },

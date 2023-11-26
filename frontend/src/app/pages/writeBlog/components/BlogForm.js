@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { selectBlogData } from "@/app/features/blogSlice";
 import AddContent from "./AddContent";
 import Inputs from "./Inputs";
-import postBlog from "@/app/utils/postBlog";
+import postBlog from "@/app/utils/blog/post/postBlog";
 import Contents from "./Contents";
 import SubmitButton from "./SubmitButton";
 

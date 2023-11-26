@@ -1,4 +1,4 @@
-import uploadImages from "./uploadImages";
+import uploadImages from "../post/uploadImages";
 
 const getImagePaths = async (imageFiles) => {
   const formData = new FormData();
