@@ -4,7 +4,7 @@ import React from "react";
 import { notFound } from "next/navigation";
 import ImageContent from "@/app/components/blog/ImageContent";
 import TextContent from "@/app/components/blog/TextContent";
-import BlogCard from "@/app/components/blogsContainer/BlogCard";
+import BlogPage from "@/app/components/blogsContainer/BlogPage"
 
 const inputType = {
   img: ImageContent,
@@ -36,7 +36,7 @@ async function Blog({ params }) {
 
   return (
     <div className={"md:w-blogW grid gap-y-8 p-2 mx-auto"}>
-      <BlogCard blogData={blog} titleSize={"text-4xl my-4"} titleStyle={""} />
+      <BlogPage blogData={blog} />
       {blog.content.map((element, index) => {
         const Content = inputType[element.input];
         return <Content data={element.data} key={index} />;

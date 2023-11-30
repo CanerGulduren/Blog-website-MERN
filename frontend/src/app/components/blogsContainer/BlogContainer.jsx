@@ -2,7 +2,7 @@
 import React from "react";
 import getAllBlogs from "@/app/utils/blog/get/getAllBlogs";
 import BlogCard from "./BlogCard";
-import  {useQuery} from "@tanstack/react-query"
+import {useQuery} from "@tanstack/react-query"
 
 const BlogContainer = ({ filterQuery, style }) => {
   
@@ -18,6 +18,8 @@ const BlogContainer = ({ filterQuery, style }) => {
   if (isError) {
     return <span>Error: {error.message}</span>
   }
+
+  console.log(data)
 
   return (
     <div className={`${style}`}>
